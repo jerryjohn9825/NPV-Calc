@@ -8,7 +8,6 @@ import base64
 
 app = Flask(__name__)
 
-# Existing functions go here
 def calculate_pv(rate, term, rental):
     monthly_rate = rate / 12
     pv = sum([rental / (1 + monthly_rate) ** i for i in range(1, term + 1)])
@@ -29,7 +28,7 @@ def calculate_npv_sl_paydown_and_cbr(slc_securitized_rental, slc_interest_rate, 
     cash_collection_original_rental_values = []
     cash_collection_escalated_rental_values = []
     
-    dates = pd.date_range(start=start_date, periods=full_term, freq='MS')
+    dates = pd.date_range(start=start_date, periods=full_term, freq='MS')  # 'MS' gives Month Start
 
     cumulative_rental = 0
     cumulative_rental_with_increase = 0
@@ -78,7 +77,7 @@ def calculate_npv_sl_paydown_and_cbr(slc_securitized_rental, slc_interest_rate, 
     return results
 
 def plot_npv_sl_paydown_and_cbr(results):
-    plt.figure(figsize=(14, 8))
+    plt.figure(figsize=(14, 8))  # Set the figure size
     plt.plot(results['Date'], results['SLC NPV'], marker='o', color='orange', label='SLC NPV')
     plt.plot(results['Date'], results['SLC Paydown'], marker='o', color='blue', label='SLC Paydown')
     plt.plot(results['Date'], results['CBR'], marker='o', color='green', label='CBR')
