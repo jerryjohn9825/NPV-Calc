@@ -41,7 +41,7 @@ def calculate_npv_sl_paydown_and_cbr(slc_securitized_rental, slc_interest_rate, 
             current_full_rental *= (1 + rental_increase_percentage / 100)
         
         if t < slc_nper:
-            slc_npv = sum([slc_securitized_rental / (1 + monthly_interest_rate) ** i for i in range(1 + t, slc_nper)]) + slc_securitized_rental / (1 + monthly_interest_rate) ** t
+            slc_npv = sum([slc_securitized_rental / (1 + monthly_interest_rate) ** i for i in range(t + 1, slc_nper + 1)])
         else:
             slc_npv = 0
         
@@ -49,7 +49,7 @@ def calculate_npv_sl_paydown_and_cbr(slc_securitized_rental, slc_interest_rate, 
         
         cbr = calculate_cbr(current_full_rental, full_term - t)
         
-        inhouse_pv = calculate_pv(inhouse_interest_rate, full_term - t, full_rental)
+        inhouse_pv = sum([full_rental / (1 + inhouse_monthly_interest_rate) ** i for i in range(1, full_term - t + 1)])
         
         cumulative_rental += full_rental
         cumulative_rental_with_increase += current_full_rental
