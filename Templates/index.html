@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLC NPV, SLC Paydown, CBR Calculator</title>
+</head>
+<body>
+    <h1>SLC NPV, SLC Paydown, CBR Calculator</h1>
+    <form method="POST">
+        <label for="full_rental">Full Rental:</label>
+        <input type="number" name="full_rental" required><br>
+
+        <label for="slc_interest_rate">SLC Interest Rate:</label>
+        <input type="number" step="0.01" name="slc_interest_rate" required><br>
+
+        <label for="inhouse_interest_rate">Inhouse Interest Rate:</label>
+        <input type="number" step="0.01" name="inhouse_interest_rate" required><br>
+
+        <label for="slc_nper">SLC Nper:</label>
+        <input type="number" name="slc_nper" required><br>
+
+        <label for="full_term">Full Term:</label>
+        <input type="number" name="full_term" required><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required><br>
+
+        <label for="rental_increase_percentage">Rental Increase Percentage:</label>
+        <input type="number" step="0.01" name="rental_increase_percentage" required><br>
+
+        <label for="rental_increase_month">Rental Increase Month (1-12):</label>
+        <input type="number" name="rental_increase_month" min="1" max="12" required><br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if plot_url %}
+    <h2>Results</h2>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Chart">
+    <h3>Table:</h3>
+    {% for table in tables %}
+    {{ table | safe }}
+    {% endfor %}
+    {% endif %}
+</body>
+</html>

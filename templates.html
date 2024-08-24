@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPV Balance Chart</title>
+</head>
+<body>
+    <h1>Enter Values to Generate NPV Balance Chart</h1>
+    <form method="POST">
+        <label for="rental">Rental Payment:</label><br>
+        <input type="number" step="0.01" name="rental" required><br><br>
+
+        <label for="interest_rate">Annual Interest Rate (in %):</label><br>
+        <input type="number" step="0.01" name="interest_rate" required><br><br>
+
+        <label for="n_periods">Number of Periods:</label><br>
+        <input type="number" name="n_periods" required><br><br>
+
+        <label for="start_date">Start Date (YYYY-MM-DD):</label><br>
+        <input type="date" name="start_date" required><br><br>
+
+        <input type="submit" value="Generate Chart">
+    </form>
+
+    {% if img_data %}
+    <h2>NPV Balance Chart</h2>
+    <img src="data:image/png;base64,{{ img_data }}" alt="NPV Balance Chart">
+    {% endif %}
+</body>
+</html>
