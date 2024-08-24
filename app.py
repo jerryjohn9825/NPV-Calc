@@ -7,7 +7,7 @@ import base64
 
 app = Flask(__name__)
 
-# Your existing functions go here
+# Existing functions go here
 def calculate_pv(rate, term, rental):
     monthly_rate = rate / 12
     pv = sum([rental / (1 + monthly_rate) ** i for i in range(1, term + 1)])
@@ -140,6 +140,5 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True, host='0.0.0.0', port=port)
